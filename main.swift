@@ -7,6 +7,7 @@
 
 import Foundation
 
+//structure des questions du quiz
 struct Question: Codable {
     var question: String
     var responses: [String]
@@ -15,13 +16,13 @@ struct Question: Codable {
     var difficulty: String
     var comment: String
 }
-
+// structure de l'utilisateur
 struct UserScore: Codable {
     var userName: String
     var score: Int
     var difficultyLevel: String
 }
-
+//structure du quiz
 struct QuizGame {
     var questions: [Question] = []
     var currentScore: Int = 0
@@ -32,6 +33,7 @@ struct QuizGame {
         self.questions = loadQuestions() ?? []
     }
     
+    //fonctions pour charger les questions
     func loadQuestions() -> [Question]? {
         let fileURL = URL(fileURLWithPath: "/Users/vicram/QuizSwift/QuizSwift/questions.json")
         do {
@@ -45,6 +47,7 @@ struct QuizGame {
         }
     }
     
+    //fonctions pour charger le score
     func loadScores() -> [UserScore] {
         let fileURL = URL(fileURLWithPath: "/Users/vicram/QuizSwift/QuizSwift/scores.json")
         do {
@@ -100,7 +103,7 @@ struct QuizGame {
             print("Votre score n'a pas été trouvé dans le classement.")
         }
     }
-    
+    //fonctions pour le menu de gestions des questions
     mutating func manageQuestions() {
         var shouldContinue = true
         while shouldContinue {
@@ -128,7 +131,7 @@ struct QuizGame {
         }
     }
     mutating func addQuestion() {
-        // Exemple simplifié, nécessite des validations et une gestion d'erreur appropriée
+        //fonction pour ajouter des questions
         print("Entrer la nouvelle question :")
         let questionText = readLine() ?? ""
         print("Entrer les options de réponse séparées par une virgule :")
@@ -147,6 +150,7 @@ struct QuizGame {
         saveQuestions()
     }
     mutating func deleteQuestion() {
+        //fonctions pour supprimer des questions
         print("Voici les questions disponibles :")
         for (index, question) in questions.enumerated() {
             print("\(index): \(question.question)")
@@ -163,6 +167,7 @@ struct QuizGame {
     }
 
     func saveQuestions() {
+        //fonction pour sauvegarder les changements
         let fileURL = URL(fileURLWithPath: "/Users/vicram/QuizSwift/QuizSwift/questions.json")
         do {
             let encoder = JSONEncoder()
@@ -174,6 +179,7 @@ struct QuizGame {
     }
     
     mutating func modifyQuestion() {
+        //fonction pour modifier les questions
         print("Voici les questions disponibles :")
         for (index, question) in questions.enumerated() {
             print("\(index): \(question.question)")
@@ -224,6 +230,7 @@ struct QuizGame {
     }
     
     mutating func showMainMenu() {
+        //fonction pour afficher le menu principal
         var shouldContinue = true
         while shouldContinue {
             print("\nMenu Principal")
@@ -249,8 +256,9 @@ struct QuizGame {
     }
     
     mutating func start() {
+        //fonction pour lancer le jeu
         currentScore = 0
-        print("Bienvenue dans le jeu de quiz Swift!")
+        print("Bienvenue dans le CarQuiz! Connaissez-vous autant l'automobile que vous le croyez?")
         
         // Saisie du nom de l'utilisateur
         print("Veuillez entrer votre nom :", terminator: " ")
