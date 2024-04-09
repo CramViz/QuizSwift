@@ -1,4 +1,5 @@
 # QuizSwift
+Veuillez changer les chemins d'accès vers les fichiers json de questions et de score en fonction de vos chemins afin que le jeu fonctionne correctement !!
 
 Ce quiz sur l'automobile se joue uniquement avec votre clavier.
 Au démmarage du jeu vous aurez le choix entre jouer, gérer les questions et quitter.
